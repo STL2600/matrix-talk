@@ -40,6 +40,10 @@ Both group and individual chats can be end to end encrypted with optional key ve
  - Can be public or invite only
  - Can be encrypted
 
+## Bridges
+
+## Bots
+
 # Setup
 
 ## Manual
