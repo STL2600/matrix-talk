@@ -3,6 +3,10 @@
 
 # What is it?
 
+## A Protocol
+
+Any system which implements the protocol is interoperable with any other
+
 ## Chat System
 
 Similar to Slack or Discord
