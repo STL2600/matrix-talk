@@ -3,6 +3,22 @@
 
 # What is it?
 
+## Chat System
+
+Similar to Slack or Discord
+
+## Voice & Video Calling
+
+This may take additional setup, but it is possible
+
+## Federated
+
+Servers are able to talk to each other, and you can talk to users on any server
+
+## Encrypted
+
+Both group and individual chats can be end to end encrypted with optional key verification
+
 # Setup
 
 ## Manual
