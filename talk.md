@@ -88,6 +88,8 @@ sudo -u synapse python -m synapse.app.homeserver \
 
 Place them in `/etc/synapse/`
 
+There's also a built in ACME client.
+
 ## Setup - Other packages
 
 If you want to preview links:
