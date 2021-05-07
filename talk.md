@@ -47,7 +47,12 @@ Both group and individual chats can be end to end encrypted with optional key ve
 
 ## Bridges
 
+ - Used to Join a matrix channel to another chat service
+ - Availabel for many different systems
+
 ## Bots
+
+ - Can be integrated as "application services" with priviledged access
 
 # Setup
 
