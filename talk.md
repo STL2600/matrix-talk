@@ -301,6 +301,65 @@ matrix-discord:
 
 # Setup - Hardening
 
+## Element Web Client
+
+Host any web-clients at a different URL
+
+Prevents XSS attacks against your server
+
+## Password Policy
+
+This is 2600.
+You should know this already.
+
+## Single Sign-On
+
+- SAML
+- OpenID Connect
+- Central Authentication Service
+- LDAP
+
+## Banners and ToS
+
+Often overlooked when self-hosting.
+Legal ass-covering.
+
+## Captcha
+
+Supports reCaptcha
+
+## Configurable options
+
+Synapse has a big-ass config file!
+
+## Configurable options - Security
+
+```
+ip_range_blacklist
+ip_range_whitelist
+federation_client_minimum_tls_version
+federation_domain_whitelist
+max_uplaodSize
+max_image_pixels
+```
+
+## Configurable options - Cont.
+
+```
+url_preview_ip_range_blacklist
+url_preview_url_blacklists
+bcrypt_rounds
+allow_guest_access
+```
+
+## Configurable options - Privacy
+
+```
+use_presence
+allow_public_rooms_without_auth
+allow_public_rooms_over_federation
+```
+
 # Questions?
 
 https://github.com/STL2600/matrix-talk
