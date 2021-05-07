@@ -58,6 +58,147 @@ Both group and individual chats can be end to end encrypted with optional key ve
 
 ## Manual
 
+# Setup - The Hard Way
+
+## Setup - VM or Raspberry Pi
+
+Start with an ArchLinux build.
+
+(Setting that up is another talk)
+
+## Setup - Install the package
+
+```
+pacman -S matrix-synapse
+```
+
+## Setup - Create Initial Config
+
+```
+cd /var/lib/synapse
+
+sudo -u synapse python -m synapse.app.homeserver \
+  --server-name chat.secretlair.org \
+  --config-path /etc/synapse/homeserver.yaml \
+  --generate-config \
+  --report-stats=yes
+```
+
+## Setup - Generate Certs
+
+Place them in `/etc/synapse/`
+
+## Setup - Other packages
+
+If you want to preview links:
+```
+pacman -S python-lxml python-netaddr
+```
+
+## Setup - Other packages
+
+For LDAP suppoert, from the AUR install 
+```
+python-matrix-synapse-ldap3
+```
+
+## Setup - Other packages
+
+Any other packages needed for bridges and bots
+
+We'll get to those later.
+
+## Setup - Edit Config
+
+```
+vim /etc/synapse/homeserver.yaml
+```
+(because you should be using vim)
+
+## Setup - Base URLs
+
+```
+server_name: "chat.secretlair.org"
+public_baseurl: https://chat.secretlair.org/
+```
+
+## Setup - Base URLs
+
+FYI: You *can't* change these later!
+
+## Setup - Define ports
+
+```
+listeners:
+  - port: 8448
+    type: http
+    tls: true
+    resources:
+      - names: [client, federation]
+```
+
+## Setup - Cert Path
+
+```
+tls_certificate_path: "/etc/synapse/matrix.crt"
+tls_private_key_path: "/etc/synapse/matrix.key"
+```
+
+## Setup - Media Path
+
+```
+media_store_path: "/var/lib/synapse/media_store"
+```
+
+## Setup - Enable URL Preview
+
+```
+url_preview_enabled: True
+url_preview-ip_range_blacklist: 10.253.0.0/16
+```
+
+## Setup - Light the candle!
+
+```
+`systemctl enable synapse.service`
+`systemctl start synapse.service`
+```
+
+## Setup - Create First User
+
+```
+register_new_matrix_user -c /etc/synapse/homeserver.yaml http://127.0.0.1:8008
+```
+
+## Setup - Create First User
+
+You also can't delete users!
+
+## Setup - LDAP Support
+
+Just for funsies.
+
+```
+password_providers:
+ - module: "ldap_auth_provider.LdapAuthProvider"
+   config:
+     enabled: true
+     mode: "search"
+     uri: "ldaps://ldap.secretlair.org:636"
+     base: "dc=secretlair,dc=org"
+     # Must be true for this feature to work
+     active_directory: true
+     # Optional. Users from this domain may log in without specifying the domain part
+     default_domain: secretlair.org
+     attributes:
+        uid: "uid"
+        mail: "userPrincipalName"
+        name: "cn"
+     bind_dn: ""
+     bind_password: ""
+     filter: "(&(objectClass=person)(memberOf=CN=chat,CN=Users,DC=secretlair,DC=org))"
+```
+
 # Setup - Docker
 
 ## Synapse - Generate a Config
